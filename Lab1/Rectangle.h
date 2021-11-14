@@ -1,9 +1,11 @@
 #pragma once
 #include <cstdint>
 #include <string>
+
+struct point { int32_t x; int32_t y; };
+
 class Rectangle
 {
-	struct point { int32_t x; int32_t y; };
 	point upper_left_corner;
 	point lower_right_corner;
 public:
@@ -24,8 +26,8 @@ public:
 	};
 	point* getPoints();
 	void setPoints();
-	int32_t* lengths();
-	int32_t square();
+	int32_t* getSides();
+	int32_t getSquare();
 	void move(int32_t x, int32_t y);
 };
 
