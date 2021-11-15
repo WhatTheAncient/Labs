@@ -1,8 +1,10 @@
 #pragma once
 #include <cstdint>
 #include <string>
+#include <iostream>
+using namespace std;
 
-struct point { int32_t x; int32_t y; };
+struct point { double_t x; double_t y; };
 
 class Rectangle
 {
@@ -42,42 +44,54 @@ public:
 	*		  is length of side which parallel Ox;
 	*		  2nd number is length of side which parallel Oy.
 	*/
-	int32_t* getSides();
+	double_t* getSides();
 	/*
 	* \brief Calculates a square of Rectangle.
 	* \return Square of Rectangle
 	*/
-	int32_t getSquare();
+	double_t getSquare();
 	/*
 	* \brief Moves Rectangle on the plane.
 	* \param x - moving along the x-axis.
 	* \param y - moving along the y-axis.
 	*/
-	void move(const int32_t, const int32_t); 
+	void makeMove(const double_t, const double_t); 
 	/*
 	* \brief Overload of istream operator. Allows enter the Rectangle in input stream.
 	* \param stream - input stream.
 	* \param object - Rectangle object
 	* \return stream
 	*/
-	friend istream& operator>>(istream& stream, Rectangle& object)
-	{
-		cout << "Enter coordinates of upper-left corner: \n";
-		stream >> object.upper_left_corner.x >> object.upper_left_corner.y;
-		cout << "Enter coordinates of lower-right corner: \n";
-		stream >> object.lower_right_corner.x >> object.lower_right_corner.y;
-		cout << endl;
-	};
+	friend istream& operator>>(istream& stream, Rectangle& object);
 	/*
 	* \brief Overload of ostream operator. Allows withdraw the Rectangle in output stream.
 	* \param stream - output stream
 	* \param object - Rectangle object
 	* \return stream
 	*/
-	friend ostream& operator<<(ostream& stream, const Rectangle object)
-	{
-		stream << "( " << object.upper_left_corner.x << ", " << object.upper_left_corner.y << " )\n";
-		stream << "          " << "( " << object.lower_right_corner.x << ", " << object.lower_right_corner.y << " )" << endl;
-	};
+	friend ostream& operator<<(ostream& stream, const Rectangle& object);
+	/*
+	* \brief Overload of multiply operator which allows multiply Rectangle on number.
+	* \param multiplier - multiplier (double)
+	* \return Rectangle with changed square, but same center.
+	*/
+	Rectangle operator*(double_t);
+	Rectangle* operator/(const int32_t);
 };
 
+istream& operator>>(istream& stream, Rectangle& object)
+{
+	cout << "Enter coordinates of upper-left corner: \n";
+	stream >> object.upper_left_corner.x >> object.upper_left_corner.y;
+	cout << "Enter coordinates of lower-right corner: \n";
+	stream >> object.lower_right_corner.x >> object.lower_right_corner.y;
+	cout << endl;
+	return stream;
+};
+ostream& operator<<(ostream& stream, const Rectangle& object)
+{
+	stream.precision(2);
+	stream << "( " << object.upper_left_corner.x << ", " << object.upper_left_corner.y << " )\n";
+	stream << "          " << "( " << object.lower_right_corner.x << ", " << object.lower_right_corner.y << " )" << endl;
+	return stream;
+};
