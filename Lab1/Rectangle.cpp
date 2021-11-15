@@ -10,16 +10,8 @@ point* Rectangle::getPoints()
 	return points;
 }
 
-void Rectangle::setPoints()
-{
-	point point_1;
-	cout << "\nEnter the coordinates of upper-left point: ";
-	cin >> point_1.x >> point_1.y;
-	
-	point point_2;
-	cout << "\nEnter the coordinates of lower-right corner: ";
-	cin >> point_2.x >> point_2.y;
-	
+void Rectangle::setPoints(const point point_1, const point point_2)
+{	
 	this->upper_left_corner = point_1;
 	this->lower_right_corner = point_2;
 }
@@ -40,7 +32,7 @@ int32_t Rectangle::getSquare()
 	return sides[0] * sides[1];
 }
 
-void Rectangle::move(int32_t _x, int32_t _y)
+void Rectangle::move(const int32_t _x, const int32_t _y)
 {
 	this->lower_right_corner.x += _x;
 	this->lower_right_corner.y += _y;

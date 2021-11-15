@@ -35,7 +35,7 @@ public:
 	*		 1st pair of numbers - coordinates of upper_left_corner,
 	*		 2nd pair of numbers - coordinates of lower_right_corner.
 	*/
-	void setPoints();
+	void setPoints(const point, const point);
 	/*
 	* \brief Calculates the length of sides.
 	* \return Array of numbers, where 1st number
@@ -53,6 +53,31 @@ public:
 	* \param x - moving along the x-axis.
 	* \param y - moving along the y-axis.
 	*/
-	void move(int32_t x, int32_t y);
+	void move(const int32_t, const int32_t); 
+	/*
+	* \brief Overload of istream operator. Allows enter the Rectangle in input stream.
+	* \param stream - input stream.
+	* \param object - Rectangle object
+	* \return stream
+	*/
+	friend istream& operator>>(istream& stream, Rectangle& object)
+	{
+		cout << "Enter coordinates of upper-left corner: \n";
+		stream >> object.upper_left_corner.x >> object.upper_left_corner.y;
+		cout << "Enter coordinates of lower-right corner: \n";
+		stream >> object.lower_right_corner.x >> object.lower_right_corner.y;
+		cout << endl;
+	};
+	/*
+	* \brief Overload of ostream operator. Allows withdraw the Rectangle in output stream.
+	* \param stream - output stream
+	* \param object - Rectangle object
+	* \return stream
+	*/
+	friend ostream& operator<<(ostream& stream, const Rectangle object)
+	{
+		stream << "( " << object.upper_left_corner.x << ", " << object.upper_left_corner.y << " )\n";
+		stream << "          " << "( " << object.lower_right_corner.x << ", " << object.lower_right_corner.y << " )" << endl;
+	};
 };
 
