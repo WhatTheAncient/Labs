@@ -79,19 +79,3 @@ public:
 	Rectangle* operator/(const int32_t);
 };
 
-istream& operator>>(istream& stream, Rectangle& object)
-{
-	cout << "Enter coordinates of upper-left corner: \n";
-	stream >> object.upper_left_corner.x >> object.upper_left_corner.y;
-	cout << "Enter coordinates of lower-right corner: \n";
-	stream >> object.lower_right_corner.x >> object.lower_right_corner.y;
-	cout << endl;
-	return stream;
-};
-ostream& operator<<(ostream& stream, const Rectangle& object)
-{
-	stream.precision(2);
-	stream << "( " << object.upper_left_corner.x << ", " << object.upper_left_corner.y << " )\n";
-	stream << "          " << "( " << object.lower_right_corner.x << ", " << object.lower_right_corner.y << " )" << endl;
-	return stream;
-};
